@@ -3,9 +3,9 @@ My web development journey
 
 These are my weekly note, of all my studies.
 
-WEEK 1 of learning web development
 
-I’m studying with The Odin Project and Develhope. This week I covered:
+WEEK 1
+
 
 HOW THE WEB WORKS: internet, IP and MAC addresses, DNS, clients and servers, TCP/IP, HTTP and status codes
 
