@@ -1,4 +1,4 @@
-*//
+```
 
 CAPTER I
 
@@ -444,4 +444,5 @@ Inner and outer display types
 Block and inline display values are said to be outer display types — they affect how the box is laid out in relation to other boxes around it. Boxes 
   also have an inner display type, which dictates how elements inside that box are laid out.
 You can change the inner display type by setting an inner display value, for example display: flex;. The element will still use the outer display 
-  type block but this changes the inner display type to flex. Any direct children of this box will become flex items and behave according to the Flexbox specification. //*
+  type block but this changes the inner display type to flex. Any direct children of this box will become flex items and behave according to the Flexbox specification.
+```
