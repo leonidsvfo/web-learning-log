@@ -1,5 +1,6 @@
-                                                              Boxes
-                                                          The box model
+<!--
+															  Boxes
+                                                        The box model
 Every single thing on a website is a rectangular box. These boxes can have other boxes inside of them. They are many ways to 
 manipulate the size of these boxes, and the space between them, using padding, border and margin.
 - content box: The area where your content is displayed; size it using properties like width and height;
@@ -304,7 +305,7 @@ External are used for more complex scripts, but for now is recommended usining t
 
 Comments
 
-Before you start learning to code, it is good practice to remember to leave comments in your code. Comments do not
+Before you start learning to code, it is good  -m "Update README"practice to remember to leave comments in your code. Comments do not
 affect how the code runs, but they can be very useful for giving instructions to other developers, or even to yourself.
 To write a comment you will use this form:
 // I am a comment          /* I am also a comment* /        
@@ -539,4 +540,6 @@ typeof 10n // "bigint"
 typeof true // "boolean"
 typeof "foo" // "string"
 typeof Symbol("id") // "symbol"
-typeof Math // "object" 
+typeof Math // "object"  
+
+-->
