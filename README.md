@@ -19,8 +19,11 @@ WEEK 2
 
 FLEXBOX: flex containers and flex items, flex-grow, flex-shrink and flex-basis, flex-direction, 
           alignment (justify-content, align-items, align-self, gap), flex-wrap and align-content;
+          
 HOW A COMPUTER WORKS: machine code, compilers, compiled vs interpreted languages, 
                       and how the browser runs JavaScript;
+                      
 JAVASCRIPT BASICS: the role of JavaScript alongside HTML and CSS, browser APIs, console.log, comments, 
                 variables (let, const), naming rules and clean code, numbers and operators, string concatenation;
+                
 DATA TYPES: number, string, boolean, null, undefined, objects, symbols, template literals and the typeof operator;
