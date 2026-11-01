@@ -1,6 +1,6 @@
-<!--
-															  Boxes
-                                                        The box model
+```
+Boxes
+The box model
 Every single thing on a website is a rectangular box. These boxes can have other boxes inside of them. They are many ways to 
 manipulate the size of these boxes, and the space between them, using padding, border and margin.
 - content box: The area where your content is displayed; size it using properties like width and height;
@@ -32,15 +32,14 @@ negative and positive value, depending on whether two elements whose margins tou
     • Two negative margins will collapse and the smallest (furthest from zero) value will be used. 
     • If one margin is negative, its value will be subtracted from the total.  
       
-                                                         Elements proprieties
+ Elements proprieties
 
 Every element comes with three most important factors:
 Sizing: box-sizing;
 Layout behavior: display (block, inline, flex, grid, none);
 Other layout tools: float, position.
 
-
-                                                                    BOX-SIZING
+BOX-SIZING
 
 In the standard box model, the property box-sizing: content-box, if you set width and height property values on a box, these values 
 define the width and height of the content box. Any padding and borders are then added to those dimensions to get the total size taken up by the box
@@ -541,5 +540,4 @@ typeof true // "boolean"
 typeof "foo" // "string"
 typeof Symbol("id") // "symbol"
 typeof Math // "object"  
-
--->
+```
