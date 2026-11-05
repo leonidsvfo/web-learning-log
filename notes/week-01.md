@@ -1,10 +1,5 @@
 # Web Developer Studies
 
-*Study notes: the Internet, HTML, CSS and JavaScript foundations*
-
-
----
-
 # Chapter I – The Internet
 
 ## How the Internet works
