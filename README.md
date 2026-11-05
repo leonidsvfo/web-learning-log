@@ -1,29 +1,52 @@
-# web-learning-log
-My web development journey
+<div align="center">
 
-These are my weekly note, of all my studies.
+# My Web Development Journey
 
+*A continuous logbook, an evolving mosaic where each week adds a fundamental piece to my understanding of the web.*
 
-WEEK 1
+</div>
 
+---
 
-HOW THE WEB WORKS: internet, IP and MAC addresses, DNS, clients and servers, TCP/IP, HTTP and status codes
+## Table of Contents
 
-WORK ENVIRONMENT: VS Code, command line, Git and GitHub
+*   [Week 1: Fundamentals of the Web, HTML & CSS Foundations]
+*   [Week 2: JavaScript Foundations & flexbox]
 
-HTML (STRUCTURE): elements, attributes, boilerplate (doctype, head, meta, body), text, lists, links, images
+---
 
-CSS (STYLE): selectors, specificity and inheritance, the DOM, the box model, box-sizing, display
+### Week 1: Fundamentals of the Web
 
-WEEK 2 
+*   **How the Web Works:** 
+    *   Internet, IP and MAC addresses
+    *   DNS, Clients, and Servers
+    *   TCP/IP protocol, HTTP, and status codes
+*   **Work Environment:** 
+    *   VS Code, Command Line, Git & GitHub
+*   **HTML (Structure):** 
+    *   Elements, attributes, and boilerplate structure (`<!DOCTYPE>`, `head`, `meta`, `body`)
+    *   Text, lists, links, and images
+*   **CSS (Style):** 
+    *   Selectors, specificity, and inheritance
+    *   The DOM, the Box Model, `box-sizing`, and the `display` property
 
-FLEXBOX: flex containers and flex items, flex-grow, flex-shrink and flex-basis, flex-direction, 
-          alignment (justify-content, align-items, align-self, gap), flex-wrap and align-content;
-          
-HOW A COMPUTER WORKS: machine code, compilers, compiled vs interpreted languages, 
-                      and how the browser runs JavaScript;
-                      
-JAVASCRIPT BASICS: the role of JavaScript alongside HTML and CSS, browser APIs, console.log, comments, 
-                variables (let, const), naming rules and clean code, numbers and operators, string concatenation;
-                
-DATA TYPES: number, string, boolean, null, undefined, objects, symbols, template literals and the typeof operator;
+---
+
+### Week 2: Advanced Layouts & JavaScript Foundations
+
+*   **Flexbox:** 
+    *   Flex containers and flex items
+    *   Sizing properties (`flex-grow`, `flex-shrink`, `flex-basis`) and direction (`flex-direction`)
+    *   Alignment (`justify-content`, `align-items`, `align-self`, `gap`, `flex-wrap`, `align-content`)
+*   **How a Computer Works:** 
+    *   Machine code, compilers, compiled vs. interpreted languages
+    *   How the browser executes JavaScript
+*   **JavaScript Basics:** 
+    *   The role of JS alongside HTML and CSS, plus Browser APIs
+    *   `console.log`, comments, variables (`let`, `const`), naming rules, and clean code
+    *   Numbers, operators, and string concatenation
+*   **Data Types:** 
+    *   Primitives and Objects: `number`, `string`, `boolean`, `null`, `undefined`, `objects`, `symbols`
+    *   Template literals and the `typeof` operator
+
+---
