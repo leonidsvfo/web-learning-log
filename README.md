@@ -4,8 +4,6 @@
 
 </div>
 
----
-
 ## Table of Contents
 
 *   [Week 1: Fundamentals of the Web, HTML & CSS Foundations]
