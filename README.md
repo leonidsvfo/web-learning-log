@@ -1,8 +1,6 @@
 <div align="center">
 
-# My Web Development Journey
-
-*A continuous logbook, an evolving mosaic where each week adds a fundamental piece to my understanding of the web.*
+# My Web Development Studies
 
 </div>
 
