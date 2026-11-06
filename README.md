@@ -4,6 +4,8 @@
 
 </div>
 
+**Most of the content in my notes comes from The Odin Project, MDN Web Docs and JavaScript.info.**
+
 ## Table of Contents
 
 *   [Week 1: Fundamentals of the Web, HTML & CSS Foundations]
