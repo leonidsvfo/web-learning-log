@@ -1134,3 +1134,165 @@ When a value is passed as a function parameter, it’s also called an argument.
 
 - A parameter is the variable listed inside the parentheses in the function declaration (it’s a declaration time term).
 - An argument is the value that is passed to the function when it is called (it’s a call time term).
+
+### Default values 
+
+If a function is called, but an argument is not provided, then the corresponding value becomes undefined.
+For instance, the aforementioned function showMessage(from, text) can be called with a single argument:
+
+```javascript
+showMessage("Ann");
+```
+
+That’s not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn’t passed, it becomes `undefined`.`
+
+We can specify the so-called “default” (to use if omitted) value for a parameter in the function declaration, using =:
+
+```javascript
+function showMessage(from, text = "no text given") {
+  alert( from + ": " + text );
+}
+
+showMessage("Ann"); // Ann: no text given
+```
+
+Now if the `text` parameter is not passed, it will get the value `"no text given"`.
+The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+
+```javascript
+showMessage("Ann", undefined); // Ann: no text given
+```
+
+Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+
+```javascript
+function showMessage(from, text = anotherFunction()) {
+  // anotherFunction() only executed if no text given
+  // its result becomes the value of text
+}
+```
+
+#### Alternative default parameters
+
+Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
+
+```javascript
+function showMessage(text) {
+  // ...
+
+  if (text === undefined) { // if the parameter is missing
+    text = 'empty message';
+  }
+
+  alert(text);
+}
+
+showMessage(); // empty message
+```
+
+…Or we could use the || operator:
+
+```javascript
+function showMessage(text) {
+  // if text is undefined or otherwise falsy, set it to 'empty'
+  text = text || 'empty';
+  ...
+}
+```
+
+### Returning a value
+
+A function can return a value back into the calling code as the result.
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+let result = sum(1, 2);
+alert( result ); // 3
+```
+
+The directive return can be in any place of the function. When the execution reaches it, the function stops, and the value is returned to the calling code (assigned to result above).
+
+There may be many occurrences of return in a single function. For instance:
+
+```javascript
+function checkAge(age) {
+  if (age >= 18) {
+    return true;
+  } else {
+    return confirm('Do you have permission from your parents?');
+  }
+}
+
+let age = prompt('How old are you?', 18);
+
+if ( checkAge(age) ) {
+  alert( 'Access granted' );
+} else {
+  alert( 'Access denied' );
+}
+```
+ is possible to use return without a value. That causes the function to exit immediately.
+
+For example:
+
+```javascript
+function showMovie(age) {
+  if ( !checkAge(age) ) {
+    return;
+  }
+
+  alert( "Showing you the movie" ); // (*)
+  // ...
+}
+```
+
+In the code above, if checkAge(age) returns false, then showMovie won’t proceed to the alert.
+**Never add a newline between return and the value.** JavaScript assumes a semicolon after return.
+
+### Naming a function
+
+Functions are actions, so their name is usually a verb. It should be brief, accurate, and describe what the function does.
+
+A common practice is to start the name with a verb prefix. The team should agree on what each prefix means:
+
+* `show…` – shows something
+* `get…` – returns a value
+* `calc…` – calculates something
+* `create…` – creates something
+* `check…` – checks something and returns a boolean
+
+#### One function – one action
+
+A function should do exactly what is suggested by its name, no more. Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two).
+
+### Method and functions are different
+
+A function is a recipe that stands on its own. A method is a function that belongs to an object.
+
+**Function:**
+
+```javascript
+function sayHi() {
+  alert("Hi");
+}
+
+sayHi();
+```
+
+**Method**
+
+```javascript
+let user = {
+  name: "John",
+  sayHi() {
+    alert("Hi");
+  }
+};
+
+user.sayHi();
+```
+
+You call it with a dot, because it lives inside an object. There are many methods ready to go in your browser like: `console.clear()` it works because the browser creates the console object and puts `clear()` inside it.
