@@ -345,9 +345,9 @@ Absolute links are completely other sites that we want to put in our page; relat
 <a href="./pages/about.html">About</a>
 ```
 
-#### Images and their attributes
+### Images and their attributes
 
-##### `src`
+#### `src`
 
 Images are void elements that do not include a closing tag. They use the `src` attribute, which tells the browser where the image file is located (like the `href` attribute). It can embed an image using both absolute and relative paths:
 
@@ -355,7 +355,7 @@ Images are void elements that do not include a closing tag. They use the `src` a
 <img src="https://theodinproject.com/mstile-310x310.png">
 ```
 
-##### `alt`
+#### `alt`
 
 The alt attribute (`alt="title-of-my-image"`) in the image element is used to describe the image on the webpage, only for screen readers, SEO, or as a fallback. It will be used in place of the image if it cannot be loaded:
 
@@ -363,7 +363,7 @@ The alt attribute (`alt="title-of-my-image"`) in the image element is used to de
 <img src="https://theodinproject.com/mstile-310x310.png" alt="The Odin Project logo">
 ```
 
-##### Height and width
+#### Height and width
 
 It's a good habit to always specify the size of an image, even if you customize it in CSS, to prevent visual errors:
 
@@ -371,11 +371,411 @@ It's a good habit to always specify the size of an image, even if you customize 
 <img src="./images/theodinlogo.png" alt="the-odin-logo" height="310" width="210">
 ```
 
-##### `srcset` and `sizes`
+#### `srcset` and `sizes`
 
 A web page could be opened by many different devices, on different browsers. Sometimes, when you have a high-quality image, it could have responsive troubles rendering the image on older devices. For that we use the `srcset` and `sizes` attributes to get the right size and quality for the device.
 
 It is also a good habit to use the `<figure>` tag as a container of the image, and `<figcaption>` for its description.
+
+## SVG
+
+SVG (Scalable Vector Graphics) is an image format made of code (XML) instead of pixels. It describes shapes and paths, so it stays sharp at any size and usually has a very small file size. It’s ideal for logos, icons and simple illustrations. Photos should stay JPG/PNG/WebP. 
+
+### How to use it
+
+1. As a normal image 
+
+```html
+<img src="logo.svg" alt="Company logo" width="68" height="65">
+```
+
+2. As a CSS background
+
+```CSS
+.logo {
+  background-image: url(logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+```
+
+**Always set background-size, or the SVG may get cropped or shrunk.**
+
+3. Inline 
+
+Open the `.xml` file in your text editor, copy the <svg> element and paste it in to your html file:
+
+```html
+<svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="25" fill="red"/>
+</svg>
+```
+
+Inline SVG is the one you can style with your normal CSS:
+
+```css
+.shape { fill: orange; }
+.shape:hover { fill: blue; transition: fill 0.2s; }
+```
+
+The downside is that it adds code to your HTML and isn’t cached by the browser.
+
+### Which method use:
+
+- Show a logo or icon: `<img>`
+- Use it as decoration in CSS: `background-image`
+- Change colors add effects: Inline
+
+Making it responsive
+
+```css
+img { width: 100%; height: auto; }
+```
+
+It scales cleanly without losing quality.
+
+# HTML Forms: the essentials for a beginner
+
+## 1. The big picture
+
+A form is a way for the user to give data to a website. Four pieces work together:
+
+1. **`<form>`** is the container. It groups the inputs together and decides where and how their data is sent.
+2. **`<input>`** (and `<textarea>`, `<select>`) is the thing the user interacts with: a box to type in, a checkbox to tick.
+3. **`<label>`** is the text that explains what the input is for.
+4. **A submit button** sends everything.
+
+```html
+<form>
+  <!-- The container -->
+  <label for="name">Name</label>
+  <!-- The description -->
+  <input type="text" id="name" name="name" />
+  <!-- Where the user types -->
+  <button type="submit">Send</button>
+  <!-- Sends the data -->
+</form>
+```
+
+When the user presses the button, the browser collects the data as **name=value pairs** and sends it to a server. That is why the `name` attribute matters so much (see section 7).
+
+---
+
+## 2. A complete small form
+
+```html
+<form action="/send-message" method="post">
+  <p>
+    <label for="user-name">Name:</label>
+    <input type="text" id="user-name" name="user_name" required />
+  </p>
+  <p>
+    <label for="user-mail">Email:</label>
+    <input type="email" id="user-mail" name="user_email" required />
+  </p>
+  <p>
+    <label for="user-msg">Message:</label>
+    <textarea id="user-msg" name="user_message"></textarea>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+
+What each part does:
+
+| Part | Purpose |
+|---|---|
+| `action="/send-message"` | The address the data is sent to |
+| `method="post"` | How the data is sent (see section 10) |
+| `for` + `id` | Connects each label to its control |
+| `name` | The name the data gets when it is sent |
+| `<p>` around each pair | Just for structure and spacing (`<div>` or `<li>` also work) |
+
+---
+
+## 3. The `<form>` element
+
+- Always start a form with `<form>` and put all its controls inside.
+- Set at least `action` and `method`.
+- If you leave out `action`, the data goes to the **same page**.
+- **Never put a form inside another form.**
+
+---
+
+## 4. The `<label>` element
+
+The `<label>` element represents a caption for an item in a user interface.
+
+### Attributes
+
+`<label>` has only one special attribute, `for`, plus the global attributes that every element has (`class`, `id`, `style`, and so on).
+
+- The value of `for` must be the `id` of the form control the label describes.
+- In JavaScript, this attribute is called `htmlFor`.
+
+### How the connection works
+
+- The browser looks for the first element in the page whose `id` matches the `for` value.
+- That element must be **labelable**: an element that can have a label, such as `input`, `textarea`, `select` and `button`. If it is not, `for` does nothing.
+- If other elements later in the page have the same `id`, they are ignored. (IDs should be unique anyway.)
+- One control can have several labels, and each label just uses the same `for` value. This works, but the forms guide advises one label per control, because some assistive technology has trouble with several.
+
+### Two ways to connect a label
+
+**Explicit** (recommended): the label and the input are separate, linked by `for` and `id`.
+
+```html
+<label for="age">Age</label>
+<input type="number" id="age" />
+```
+
+**Implicit**: the input is nested inside the label, so `for` and `id` are not needed.
+
+```html
+<label>
+  Age
+  <input type="number" />
+</label>
+```
+
+### Quick summary
+
+| Situation | Result |
+|---|---|
+| `for` matches the `id` of an input | Works |
+| `for` matches the `id` of a `<div>` | Does nothing |
+| Two elements have the same `id` | Only the first is used |
+| Two labels use the same `for` | Both work, and both connect to the same input |
+
+### Why connecting is useful
+
+1. **Clicking or tapping the label activates the control.** This is a bigger target, which helps phone users.
+2. **Screen readers read the label aloud** when the user reaches the input.
+
+### Accessibility rules
+
+- **No extra interactive elements inside a label.** Links and buttons inside a label make it hard to activate the input. The only interactive thing allowed inside is the control the label belongs to. If you need a link (for example, "Terms and Conditions"), put it outside the label, ideally before the control, so people can read it first.
+- **No headings (`<h1>` to `<h6>`) inside a label.** Assistive technology uses headings to navigate the page, so headings inside labels cause confusion. If you want the label text bigger or bolder, use a CSS class on the label. To give a title to a whole form or a group of fields, use `<legend>` inside a `<fieldset>`.
+- **Buttons don't need labels.** An `<input type="button">` with a `value`, and the `<button>` element, already have their own text. Adding a label can confuse assistive technology.
+
+---
+
+## 5. The `<input>` element
+
+`<input>` creates a field where the user gives information: typing text, ticking a box, choosing an option. It has no closing tag, and what it looks like and does depends on its `type`. If you do not specify the type, the default is `text`.
+
+```html
+<input type="text" />
+```
+
+### The types you'll use most
+
+| type | What it gives you |
+|---|---|
+| `text` | A one-line text box (the default) |
+| `email` | Like text, but checks that the value looks like an email |
+| `password` | Text box where the characters are hidden |
+| `number` | Only numbers, with up and down arrows |
+| `checkbox` | A box you tick on or off (you can tick several) |
+| `radio` | A round button: choose **one** option from a group |
+| `submit` | A button that sends the form |
+| `date` | A date picker |
+| `file` | A file picker |
+| `hidden` | Invisible, but still sent (for example an ID) |
+
+### The attributes you'll use most
+
+| Attribute | What it does |
+|---|---|
+| `type` | Which kind of input it is |
+| `id` | Unique ID, so a `<label>` can connect with `for` |
+| `name` | The name of the data when the form is sent |
+| `value` | The starting value (for checkbox and radio, the value that is sent when selected) |
+| `placeholder` | Grey hint text inside an empty field |
+| `required` | The form cannot be sent if this field is empty |
+| `disabled` | The user can't use the field |
+| `checked` | Checkbox or radio is already selected when the page loads |
+| `min` / `max` | Smallest and largest allowed value (numbers, dates) |
+| `minlength` / `maxlength` | Fewest and most characters allowed (text) |
+
+`<input>` has no closing tag, so its starting text goes in the `value` attribute.
+
+### Placeholder is not a label
+
+Plain text next to an input is **not** enough, so always use a `<label>`. The `placeholder` disappears once the user types, and screen readers may not read it. Use it only as a hint (for example "e.g., Mario") and keep a real label.
+
+---
+
+## 6. Other controls: `<textarea>`, `<select>` and buttons
+
+### `<textarea>` (multi-line text)
+
+```html
+<textarea name="msg" rows="5" cols="30">Starting text goes here</textarea>
+```
+
+- It **has** a closing tag, and the starting text goes **between** the tags.
+- `rows` and `cols` set the starting size.
+
+### `<select>` (drop-down list)
+
+```html
+<select id="fruit" name="fruit">
+  <option value="banana">Big yellow banana</option>
+  <option value="cherry" selected>Juicy cherry</option>
+  <option value="lemon">Sharp lemon</option>
+</select>
+```
+
+- The `value` is what gets **sent**. The text between the tags is what the user **sees**. If you leave out `value`, the visible text is sent.
+- `selected` picks the starting choice.
+- Add `multiple` to the `<select>` to allow several choices.
+- `<optgroup label="...">` groups options under a heading.
+
+### Buttons
+
+| Button | What it does |
+|---|---|
+| `<button type="submit">` | Sends the form (this is the **default** if you give no type) |
+| `<button type="reset">` | Clears the form. Is better to avoid it, because it frustrates users |
+| `<button type="button">` | Does nothing by itself. You give it a job with JavaScript later |
+
+`<button>` is usually better than `<input type="submit">` because it can contain HTML and is easier to style.
+
+---
+
+## 7. Rules about what gets sent (very important)
+
+1. **No `name`, no data.** treat `name` as required. An input without a `name` is not sent, even if the user filled it in. The sent data looks like `name=value`.
+2. **Checkboxes and radios send data only when selected.** If a checkbox with `name="fruit"` and `value="cherry"` is ticked, the form sends `fruit=cherry`. If it isn't ticked, nothing is sent for it, not even its name. A ticked box with no `value` sends `on`.
+3. **Radio buttons share one `name` to form a group.** Choosing one automatically unselects the others. Each still needs its own `id`.
+4. **`disabled` fields are not sent.** `readonly` fields are still sent.
+5. **`hidden` fields are sent**, even though the user can't see them.
+
+```html
+<input type="radio" id="small" name="size" value="small" checked />
+<label for="small">Small</label>
+
+<input type="radio" id="large" name="size" value="large" />
+<label for="large">Large</label>
+```
+
+If "Large" is selected, the form sends `size=large`.
+
+---
+
+## 8. Good structure
+
+- **Every control needs a label** (see section 4).
+- **Group radio buttons in a `<fieldset>` with a `<legend>`.** The legend is the question for the whole group:
+
+```html
+<fieldset>
+  <legend>What is your favorite meal?</legend>
+  <p>
+    <input type="radio" id="soup" name="meal" value="soup" />
+    <label for="soup">Soup</label>
+  </p>
+  <p>
+    <input type="radio" id="pizza" name="meal" value="pizza" />
+    <label for="pizza">Pizza</label>
+  </p>
+</fieldset>
+```
+
+- Mark required fields (for example with `*`) and explain the mark **before** the form: "Fields marked * are required."
+- Longer forms can be split into sections with `<section>` or `<fieldset>`.
+
+---
+
+## 9. Validation (checking the data in the browser)
+
+HTML can check data **without JavaScript**, using attributes:
+
+| Attribute | Checks |
+|---|---|
+| `required` | The field must not be empty |
+| `type="email"` / `"url"` / `"number"` | The value has the right format |
+| `minlength` / `maxlength` | Fewest / most characters (text) |
+| `min` / `max` | Smallest / largest value (numbers, dates) |
+| `step` | Allowed steps. `number` defaults to 1, so `3.2` is invalid unless you set `step="any"` |
+| `pattern` | The whole value must match a regular expression (not for `<textarea>`) |
+
+What happens:
+
+- If a field breaks a rule, the browser **blocks the submit**, shows a message, and focuses the first problem field.
+- Invalid fields match the CSS selector `:invalid`, and valid ones match `:valid`, so you can style them:
+
+```css
+input:invalid { border: 2px dashed red; }
+input:valid   { border: 2px solid black; }
+```
+
+- A `radio` group with `required` on any one button means one must be chosen.
+- A field that is **not** required and **empty** is not invalid.
+
+> **Warning:** Client-side validation is only for the user's convenience. Anyone can bypass it, so the **server must always check the data again**.
+
+Changing the wording of the error messages needs JavaScript. That comes later.
+
+---
+
+## 10. Sending the data: `action` and `method`
+
+### GET
+
+- Data is added to the **URL**: `https://example.com/?say=Hi&to=Mom`
+- Anyone can see it in the address bar.
+- Fine for searches. **Never use it for passwords or private data.**
+
+### POST
+
+- Data goes in the **body** of the request, not in the URL.
+- Use it for private data, big data, and anything that changes something on the server.
+
+### Sending files
+
+You need three things together:
+
+```html
+<form method="post" action="/upload" enctype="multipart/form-data">
+  <input type="file" name="myFile" />
+  <button>Upload</button>
+</form>
+```
+
+- `method="post"`
+- `enctype="multipart/form-data"`
+- an `<input type="file">`
+
+### Security in one sentence
+
+HTML forms are not dangerous by themselves. The danger is in how the **server** handles the data, so the server must never trust what it receives.
+
+If the page and the `action` URL use `https://`, the data is encrypted. This matters most for passwords.
+
+## 11. Quick checklist for building a form
+
+- [ ] `<form action="..." method="...">` around everything
+- [ ] Every control has an `id` and a `name`
+- [ ] Every control has a `<label for="...">` that matches its `id`
+- [ ] Radio buttons in a group share the same `name`
+- [ ] Radio or checkbox groups are in a `<fieldset>` with a `<legend>`
+- [ ] A submit button exists
+- [ ] Required fields are marked with `required` (and explained to the user)
+- [ ] Private data uses `method="post"`
+
+## 12. Reference: `<label>` technical summary
+
+You don't need to memorize this, but it is useful to look up.
+
+- **Permitted content:** phrasing content (text and inline elements). No `<label>` inside a label, and no other labelable element except the one it labels.
+- **Tags:** both opening and closing tags are required.
+- **Permitted parents:** any element that accepts phrasing content.
+- **ARIA role:** none by default, and you are not allowed to set one.
+- **DOM interface:** `HTMLLabelElement`.
+- **Specification:** the HTML standard, section "the label element".
 
 ### The structure of a website
 
