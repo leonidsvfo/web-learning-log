@@ -48,3 +48,28 @@
     *   Template literals and the `typeof` operator
 
 ---
+
+### Week 3: Conditionals, Strings & Functions
+
+*   **Variables, Classes & Objects:**
+    * Variable recap: `let`, name, assignment `=`, value
+    * Classes as blueprints (properties, methods) and objects built with `new`
+*   **Strings:**
+    * Quotes (single, double, backticks) and template literals with `${...}`
+    * Primitives vs. `String` objects, and the automatic wrapper that lets primitives use methods
+    * Basic methods: `length`, `charAt()`, `at()`, `slice()`, `substring()`, `toUpperCase()`, `toLowerCase()`, `trim()`, `padStart()`, `repeat()`, `replace()`, `replaceAll()`, `split()`
+*   **Comparisons & Conditionals:**
+    * Comparison operators, returning booleans, string (lexicographical) comparison, and type conversion
+    * Strict equality (`===`, `!==`) vs. loose equality (`==`)
+    * `if ... else`, `else if`, nesting, and truthy/falsy values
+    * Logical operators `&&`, `||`, `!`, precedence, and short-circuit evaluation
+    * `switch` (with `break`, `default`, and grouped cases) and the ternary operator
+*   **Developer Tools:**
+    * Opening Chrome DevTools, the Sources panel, and the Console
+    * Breakpoints, the `debugger` command, and stepping through code (Resume, Step, Step over, Step out)
+    * Inspecting and editing CSS with the Elements/Styles panel
+*   **Functions:**
+    * Declaration, parameters, arguments, and `return`
+    * Local vs. outer variables, shadowing, and default parameter values
+    * Naming conventions (verb prefixes) and the "one function, one action" rule
+    * Functions vs. methods
