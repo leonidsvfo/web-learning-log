@@ -159,8 +159,7 @@ textBox.addEventListener("keydown", logKey);
 |---|---|---|
 | `function` | Keyword: "I am declaring a function" | JavaScript (fixed) |
 | `logKey` | **Function** name | **Me** |
-| `(event)` | Parentheses hold the parameters | JavaScript (fixed) |
-| `event` | **Parameter**: placeholder name for what the function will receive | **Me** (could be `pippo`) |
+| `(event)` | **Parameter**: placeholder name for what the function will receive | **Me** (could be `pippo`) |
 | `{` | Opens the function body | JavaScript (fixed) |
 
 **How it works:** this is a recipe with a name. `event` is an empty box with a label. It gets filled **only when the function is called**.
