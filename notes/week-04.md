@@ -133,10 +133,6 @@ function logKey(event) {
 textBox.addEventListener("keydown", logKey);
 ```
 
-Note: the first line is not in the Odin Project example, which assumes `textBox` already exists. It is added here to complete the picture.
-
----
-
 ## Line 1: `const textBox = document.querySelector("input");`
 
 **When it runs:** immediately, when the page loads the script.
