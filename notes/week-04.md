@@ -629,3 +629,170 @@ function recursiveFunction() {
 recursiveFunction(); 
 // Uncaught RangeError: Maximum call stack size exceeded
 ```
+
+
+---
+
+# Problem solving
+
+This is the most important skill a developer needs. Problem solving is the core thing software developers do.
+
+## Understand the problem
+
+The first step to solving a problem is understanding exactly what the problem is. If you don’t understand the problem, you won’t know when you’ve successfully solved it and may waste a lot of time on a wrong solution.
+
+To gain clarity and understanding of the problem, write it down on paper, reword it in plain English until it makes sense to you, and draw diagrams if that helps. When you can explain the problem to someone else in plain English, you understand it.
+
+## Plan
+
+Now that you know what you’re aiming to solve, don’t jump into coding just yet. It’s time to plan out how you’re going to solve it first.
+
+Some of the questions you should answer at this stage of the process:
+
+  -  Does your program have a user interface? What will it look like? What functionality will the interface have? Sketch this out on paper.
+  -  What inputs will your program have? Will the user enter data or will you get input from somewhere else?
+  -  What’s the desired output?
+  -  Given your inputs, what are the steps necessary to return the desired output?
+
+The last question is where you will write out an algorithm to solve the problem. You can think of an algorithm as a recipe for solving a particular problem. It defines the steps that need to be taken by the computer to solve a problem in pseudocode.
+
+## Pseudocode
+
+Pseudocode is a technique used to describe the distinct steps of an algorithm in a way that’s easy for anyone with basic programming knowledge to understand. It helps you slow down and think through the steps your program will have to go through to solve the problem.
+
+For example (these are subproblems):
+
+1. When the user inputs a number
+2. Initialize a counter variable and set its value to zero
+3. While counter is smaller than user inputted number increment the counter by one
+4. Print the value of the counter variable
+
+At its core, pseudocode is the ability to represent six programming constructs (always written in uppercase): SEQUENCE, CASE, WHILE, REPEAT-UNTIL, FOR, and IF-THEN-ELSE. These constructs — also called keywords — are used to describe the control flow of the algorithm.
+
+- SEQUENCE represents linear tasks sequentially performed one after the other.
+- WHILE is a loop with a condition at its beginning.
+- REPEAT-UNTIL is a loop with a condition at the bottom.   
+- FOR is another way of looping.   
+- IF-THEN-ELSE is a conditional statement changing the flow of the algorithm.
+- CASE is the generalization form of IF-THEN-ELSE. 
+
+### How to Write Pseudocode
+
+1. Always capitalize the initial word (often one of the main six constructs).
+2. Make only one statement per line.
+3. Indent to show hierarchy, improve readability and show nested constructs.
+4. Always end multi-line sections using any of the END keywords (ENDIF, ENDWHILE, etc.).
+5. Keep your statements programming language independent.
+6. Use the naming domain of the problem, not that of the implementation. For instance: “Append the last name to the first name” instead of “name = first+last.”
+7. Keep it simple, concise and readable.
+
+## Divide and conquer
+
+Many beginners try to solve the big problem in one go. Don’t do this. If the problem is sufficiently complex, you’ll get yourself tied in knots and make life a lot harder for yourself. Decomposing problems into smaller and easier to solve subproblems is a much better approach. Decomposition is the main way to deal with complexity, making problems easier and more approachable to solve and understand.
+
+It’s important to remember that you might not know all the steps that you might need up front, so your algorithm may be incomplete—this is fine. Getting started with and solving one of the subproblems you have identified in the planning stage often reveals the next subproblem you can work on. Or, if you already know the next subproblem, it’s often simpler with the first subproblem solved.
+
+The complete guide step by step is on this page: https://www.theodinproject.com/lessons/foundations-problem-solving
+
+### Good recommendations
+
+- Computers are not smarter than a shoe. Programming is about explaining things to the idiot computer.
+- Computer languages have about 100 words. The syntax is painfully rigid.
+- The secret isn't code, the secret is algorithms and data.
+- Write out the concepts first, then convert them to code.
+- If you're lost in coding, it's probably because you shouldn't be coding yet.
+- First you need to understand the problem you're trying to solve. Don't jump straight to coding without understanding algorithms.
+- Having goals is good, but if goals lead to inevitable failure and defeat, maybe pick something else...
+- No matter what, do not feel like an idiot.
+- Comments are not there to explain the code to programmers, code is there to explain the comments to the computer.
+- The coding part is the easy part. The algorithm part is the hard part.
+- If you're really confused, find someone that feels comfortable and make them uncomfortable.
+- Did you tell it to do it incorrectly, or did you tell it to do the wrong thing?
+- Don't start with a solution. Don't try to solve a problem you don't understand.
+
+# Understanding Errors 
+
+**Core idea:** Error messages look scary, but they tell you what went wrong and where. Learning to read them lets you debug effectively, ask for useful help, and keep moving when you're stuck.
+
+## Anatomy of an error
+
+An error is a built-in JS object with a **type** and a **message**, plus location info:
+
+| Part | What it tells you | Example |
+|---|---|---|
+| **Type** | The category of problem | `ReferenceError` |
+| **Message** | The specific reason | `c is not defined` |
+| **File and line** (sometimes column) | Where to look | `at script.js:4:13` |
+| **Stack trace** | The chain of function calls that led to the error | `add()` ← `print()` ← line 12 |
+
+The type and the message matter equally. Two `ReferenceError`s can have completely different causes, such as `c is not defined` versus `can't access lexical declaration 'X' before initialization`.
+
+## Most common errors
+
+| Error | When it happens | Bad code | Fix |
+|---|---|---|---|
+| **SyntaxError** | The code breaks JavaScript's grammar rules | `console.log "Hello"` | `console.log("Hello")` |
+| **ReferenceError** | You use a variable that doesn't exist in the current scope, or you misspelled it | `console.log(c);` with no `c` declared | Declare `c`, or fix the typo |
+| **TypeError** | You use a value in a way its type doesn't allow, such as calling a method it doesn't have | `"Hello".push("World")` → `str1.push is not a function` | Use the right method: `"Hello".concat("World")` |
+
+## Examples
+
+**1. ReferenceError (a typo)**
+
+```javascript
+const userName = "Ana";
+console.log(username); // ReferenceError: username is not defined
+```
+
+JavaScript is case-sensitive, so `username` and `userName` are different variables.
+
+**2. SyntaxError (a missing bracket)**
+
+```javascript
+function greet() {
+  console.log("Hi");
+// SyntaxError: Unexpected end of input
+```
+
+The closing `}` is missing.
+
+**3. TypeError (the wrong data type)**
+
+```javascript
+const count = 5;
+count.toUpperCase(); // TypeError: count.toUpperCase is not a function
+```
+
+`toUpperCase` is a string method, and `count` is a number.
+
+**4. Reading a stack trace**
+
+```javascript
+function add() { return c; }   // 2. error happens here
+function print() { add(); }    // 3. called by print
+print();                       // 4. started here
+```
+
+Read the trace from top to bottom to follow the error back to where the call chain began.
+
+## Where beginners struggle
+
+The first three come straight from the lesson, and the rest are common in practice.
+
+- **Being scared of error messages.** The lesson's main point is to treat the error as your friend.
+- **"`.push` is a function, so why does it say it isn't?"** The method exists, but only on arrays, not on strings. With a `TypeError`, check what **data type** you're actually working with.
+- **Treating warnings like errors.** Errors (usually red) stop your program. Warnings (usually yellow) flag potential problems and often don't break anything. Fix them when you can, but don't panic.
+- **Reading only the type and ignoring the message** (or the reverse). You need both.
+- **Looking in the wrong place.** The error line is where JavaScript noticed the problem. The real cause is sometimes earlier, especially with missing brackets.
+- **Typos and capitalization.** `userName` and `username` are different, and so are `Console.log` and `console.log`.
+- **Not using the stack trace.** In nested function calls, the trace shows how you got to the error.
+- **Guessing instead of checking values.** `console.log()` shows what a variable really contains.
+
+## The lesson's debugging process
+
+1. Read the error message carefully.
+2. Google the error, since StackOverflow and the MDN docs usually explain it.
+3. Use the browser **debugger** (breakpoints, stepping through code, inspecting variables).
+4. Use the **console**: `console.log()`, `console.table()`, `console.trace()`.
+
+
