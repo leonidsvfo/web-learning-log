@@ -73,3 +73,26 @@
     * Local vs. outer variables, shadowing, and default parameter values
     * Naming conventions (verb prefixes) and the "one function, one action" rule
     * Functions vs. methods
+
+---
+
+### Week 4: Events, Functions & Debugging
+
+*   **Events & Properties:**
+    * Events as strings (`"keydown"`, `"click"`, `"submit"`) and `addEventListener`
+    * The `event` object and its properties (`event.key`, `textBox.value`)
+    * Properties vs. methods
+    * Passing a function vs. calling it (`logKey` vs. `logKey()`)
+*   **Advanced Functions:**
+    * Function scope: local vs. global
+    * Function expressions vs. function declarations (hoisting)
+    * Callback functions
+    * Arrow functions
+*   **Call Stack:**
+    * Single-threaded, LIFO execution and stack overflow
+*   **Problem Solving:**
+    * Understanding the problem, planning, pseudocode, and divide and conquer
+*   **Understanding Errors:**
+    * Error anatomy (type, message, location, stack trace)
+    * `SyntaxError`, `ReferenceError`, `TypeError`
+    * Debugging process: `console.log()`, `console.table()`, `console.trace()`, and the debugger
