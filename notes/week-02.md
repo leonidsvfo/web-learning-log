@@ -121,6 +121,250 @@ By setting `min-width: 0px` directly on the Flexbox child, we tell the Flexbox a
 - Zooming out, however, we have these two rows within a single Flexbox context! The cross axis will now intersect **two** rows, not one. And so, we can't move the rows individually; we need to distribute them *as a group*.
 - Using our definitions from above, we're dealing with **content**, not **items**. But we're also still talking about the cross axis! And so the property we want is `align-content`.
 
+## Grid: foundations
+
+> CSS Grid is a **two-dimensional** layout system: it organizes content into **rows and columns**.
+
+### 1. Core Vocabulary
+
+| Term | Meaning |
+|------|---------|
+| **Container** | The parent with `display: grid` |
+| **Items** | The direct children of the container |
+| **Track** | A single row or column |
+| **Gap / gutter** | The space between tracks |
+| **Lines** | Numbered grid lines, starting at **1** |
+
+
+### 2. Create a Grid
+
+```css
+.container {
+  display: grid;
+}
+```
+
+By default you get **one column**, so items stack like normal flow. To see an actual grid, define columns.
+
+### 3. Define Columns
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 200px 200px 200px; /* three fixed columns */
+}
+```
+
+You can use any length unit or percentage.
+
+#### The `fr` unit (flexible space)
+
+`1fr` = one fraction of the **available** space.
+
+```css
+grid-template-columns: 1fr 1fr 1fr;  /* three equal columns */
+grid-template-columns: 2fr 1fr 1fr;  /* first column twice as wide */
+```
+
+- You can mix `fr` with fixed units: fixed tracks take their space first, then `fr` shares the rest.
+- `fr` shares *available* space, so big content inside a track leaves less to share.
+
+
+### 4. Gaps
+
+```css
+gap: 20px;          /* rows and columns */
+row-gap: 20px;      /* only between rows */
+column-gap: 10px;   /* only between columns */
+```
+
+Gaps accept lengths and percentages, but **not `fr`**.
+
+
+### 5. `repeat()`
+
+```css
+grid-template-columns: repeat(3, 1fr);
+/* same as: 1fr 1fr 1fr */
+```
+
+Syntax: `repeat(count, track-list)`.
+
+
+### 6. Explicit vs Implicit Grid
+
+- **Explicit grid**: tracks you define with `grid-template-columns` / `grid-template-rows`.
+- **Implicit grid**: extra tracks created automatically when content doesn't fit the explicit grid (usually new rows).
+
+Size the implicit tracks with:
+
+```css
+grid-auto-rows: 100px;
+grid-auto-columns: 100px;
+```
+
+### 7. `minmax()`
+
+Set a minimum and a maximum size for a track.
+
+```css
+grid-auto-rows: minmax(100px, auto);
+```
+
+At least 100px tall, but it grows if the content needs more space. This avoids overflow.
+
+### 8. Responsive Columns Without Media Queries
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+```
+
+**How it works:** the grid creates as many columns of at least 230px as will fit, then shares the leftover space evenly (`1fr`).
+
+### 9. Line-Based Placement
+
+Lines are numbered from **1**. Line 1 is on the left/top in left-to-right languages.
+
+```css
+grid-column-start: 1;
+grid-column-end: 3;
+grid-row-start: 1;
+grid-row-end: 2;
+```
+
+#### Shorthand (`start / end`)
+
+```css
+grid-column: 1 / 3;   /* from line 1 to line 3 (spans 2 columns) */
+grid-row: 2;          /* row 2 only */
+```
+
+**Example: a classic page layout**
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+}
+header { grid-column: 1 / 3; grid-row: 1; }
+aside  { grid-column: 1;     grid-row: 2; }
+main   { grid-column: 2;     grid-row: 2; }
+footer { grid-column: 1 / 3; grid-row: 3; }
+```
+
+**Tips**
+- `-1` targets the **last line**; negative numbers count backwards from the end.
+- Line numbers refer to the **explicit grid** only, not the implicit one.
+- Without placement, items are **auto-placed**, one per cell.
+
+### 10. `grid-template-areas`
+
+Name the parts of your layout and draw it in CSS.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+  gap: 20px;
+}
+
+header { grid-area: header; }
+aside  { grid-area: sidebar; }
+main   { grid-area: content; }
+footer { grid-area: footer; }
+```
+
+**Rules**
+- Every cell must be filled.
+- To span multiple cells, **repeat the name**.
+- Use `.` for an empty cell.
+- Areas must be **rectangular** (no L-shapes).
+- An area name can't appear in two separate places.
+
+### 11. Nested Grids & Subgrid
+
+Any grid item can become a grid itself:
+
+```css
+main {
+  grid-area: content;
+  display: grid;
+  grid-template-rows: 4fr 3fr 3fr;
+  gap: inherit;
+}
+```
+
+#### `subgrid`
+
+The nested grid reuses the **parent's tracks**:
+
+```css
+.subgrid {
+  grid-column: 1 / 4;
+  grid-row: 2 / 4;
+  display: grid;
+  gap: inherit;
+  grid-template-columns: subgrid;  /* inherits the parent's columns */
+  grid-template-rows: 2fr 1fr;     /* but defines its own rows */
+}
+```
+
+### 12. Grid Systems (12 Columns)
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+aside { grid-column: 1 / 4; }    /* 3 columns */
+main  { grid-column: 4 / 13; }   /* 9 columns */
+```
+
+You don't need a framework: modern browsers support CSS Grid natively.
+
+### 13. Quick Reference
+
+| Property | Purpose |
+|----------|---------|
+| `display: grid` | Create a grid container |
+| `grid-template-columns` / `grid-template-rows` | Define explicit tracks |
+| `gap`, `row-gap`, `column-gap` | Space between tracks |
+| `repeat()` | Repeat track patterns |
+| `fr` | Fraction of available space |
+| `minmax(min, max)` | Flexible track size range |
+| `auto-fit` | As many columns as fit |
+| `grid-auto-rows` / `grid-auto-columns` | Size implicit tracks |
+| `grid-column` / `grid-row` | Place items by line numbers |
+| `grid-template-areas` | Name the layout (on the container) |
+| `grid-area` | Assign an item to a named area |
+| `subgrid` | Inherit the parent's tracks |
+
+### 14. Handy Patterns
+
+```css
+/* Equal columns */
+grid-template-columns: repeat(3, 1fr);
+
+/* Responsive cards */
+grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+/* Rows that grow with content */
+grid-auto-rows: minmax(100px, auto);
+
+/* Full-width item */
+grid-column: 1 / -1;
+```
+
 ---
 
 # Chapter IV – What Is JavaScript?
