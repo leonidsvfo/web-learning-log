@@ -96,3 +96,39 @@
     * Error anatomy (type, message, location, stack trace)
     * `SyntaxError`, `ReferenceError`, `TypeError`
     * Debugging process: `console.log()`, `console.table()`, `console.trace()`, and the debugger
+
+---
+
+### Week 5: Clean Code, Loops & Arrays
+
+*   **Clean Code:** 
+    *   camelCase naming convention
+    *   Meaningful names for variables and functions
+    *   Consistent vocabulary (variables as nouns or adjectives, functions as verbs)
+    *   Searchable and immediately understandable names (avoiding magic numbers, e.g. `ONE_HOUR`)
+    *   Indentation and line length
+    *   Comments: code tells you "how", comments tell you "why"
+    *   Don't use comments for things Git already does
+*   **Loops:** 
+    *   `for` statement (initialization, condition, afterthought)
+    *   `while` and `do...while`
+    *   `for...of` and why it is safer than the classic `for` with an index
+    *   `break` and `continue`
+    *   `map()` and `filter()` with callback functions
+*   **Arrays:** 
+    *   Ordered lists, indexes starting from 0, and `length`
+    *   Reading and changing elements, and `at(-1)` for the last element
+    *   `push()`, `pop()`, `unshift()`, `shift()`, and stack vs. queue
+    *   Looping over arrays (`for`, `for...of`, `forEach`) and why to avoid `for...in`
+    *   Arrays are objects: copy by reference vs. shallow copy (`[...arr]`)
+    *   Multidimensional arrays (arrays of arrays)
+    *   Array to string conversion and comparing arrays by reference
+*   **Array Methods:** 
+    *   Mutating vs. non-mutating methods
+    *   `splice()` vs. `slice()`, and `concat()`
+    *   Searching: `indexOf()`, `includes()`, `find()`, `findIndex()`
+    *   Transforming and filtering: `map()`, `filter()`
+    *   `sort()` with a compare function, and `reverse()`
+    *   `split()` and `join()`
+    *   `reduce()` and the accumulator
+    *   `some()`, `every()`, `Array.isArray()`, and method chaining
